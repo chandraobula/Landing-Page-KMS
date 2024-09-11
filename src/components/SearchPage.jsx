@@ -2,7 +2,10 @@ import React from "react";
 import { Link, IconButton, Grid } from "@mui/material";
 import { Facebook, Twitter, Instagram, LinkedIn } from "@mui/icons-material";
 import "../styles/landingpage.css";
+import "../styles/search.css";
 import { TextField, InputAdornment } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+
 import {
   Toolbar,
   Button,
@@ -14,15 +17,47 @@ import {
 } from "@mui/material";
 
 import Logo from "../images/Logo.svg";
-import SearchIcon from "@mui/icons-material/Search";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import ReactLogo from "../images/ReactLogo.png";
+import group1 from "../images/Group (1).svg";
+import group2 from "../images/Group (2).svg";
+import group3 from "../images/Group (3).svg";
 
-const LandingPage = () => {
+const SearchPage = () => {
   const [expandedIndex, setExpandedIndex] = useState(null);
 
   const handleAccordionChange = (index) => {
     setExpandedIndex(expandedIndex === index ? null : index);
   };
+
+  const [activeSection, setActiveSection] = useState("home");
+
+  // Detect scroll position and update the active section
+  const handleScroll = () => {
+    const sections = document.querySelectorAll("section");
+    const scrollPosition = window.scrollY + window.innerHeight / 2;
+
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+      const sectionId = section.getAttribute("id");
+
+      if (
+        scrollPosition >= sectionTop &&
+        scrollPosition < sectionTop + sectionHeight
+      ) {
+        setActiveSection(sectionId);
+      }
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const faqList = [
     {
       question: "What is Lorem Ipsum?",
@@ -42,37 +77,41 @@ const LandingPage = () => {
       answer: "Contrary to popular belief, Lorem Ipsum...",
     },
   ];
+
   return (
     <div>
       {/* Hero Section */}
-      <section className="hero">
+      <section className="hero" id="home">
         <Container>
           <Toolbar disableGutters className="toolbar">
             <div className="logoSection">
               <img src={Logo} alt="Logo" className="logo" />
               <Typography>Infer.</Typography>
             </div>
-            <nav className="navLinks">
+            <nav className="navLinks" style={{ position: "static" }}>
               <a
-                href="#text-buton"
-                rel="why-infer"
+                href="#home"
+                className={activeSection === "home" ? "active" : ""}
                 style={{ textDecoration: "none", color: "white" }}
+                rel="why-infer"
+              >
+                Home
+              </a>
+
+              <a
+                href="#why-infer"
+                className={activeSection === "why-infer" ? "active" : ""}
+                style={{ textDecoration: "none", color: "white" }}
+                rel="why-infer"
               >
                 Why Infer?
               </a>
 
               <a
-                href="#text-buton"
-                rel="why-infer"
+                href="#faq"
+                className={activeSection === "faq" ? "active" : ""}
                 style={{ textDecoration: "none", color: "white" }}
-              >
-                Advanced Search
-              </a>
-
-              <a
-                href="#text-buton"
                 rel="why-infer"
-                style={{ textDecoration: "none", color: "white" }}
               >
                 FAQ's
               </a>
@@ -116,6 +155,54 @@ const LandingPage = () => {
           {/* Transparent Content */}
           <Container className="heroContent">
             <div className="searchBox" style={{ marginTop: 20 }}>
+              <img
+                src={ReactLogo}
+                alt=""
+                style={{
+                  position: "absolute",
+                  left: "-50px", // Adjust position as needed
+                  top: "100px", // Adjust position as needed
+                  zIndex: 0, // Make sure it's behind the search bar
+                  opacity: 0.5, // Optional: Add opacity for a subtle background effect
+                  width: "80px", // Adjust size as needed
+                }}
+              />
+              <img
+                src={group1}
+                alt=""
+                style={{
+                  position: "absolute",
+                  left: "50px", // Adjust position as needed
+                  top: "-30px", // Adjust position as needed
+                  zIndex: 0, // Ensure it's behind the search bar
+                  opacity: 0.5, // Optional
+                  width: "100px", // Adjust size as needed
+                }}
+              />
+              <img
+                src={group2}
+                alt=""
+                style={{
+                  position: "absolute",
+                  left: "20px", // Adjust position as needed
+                  bottom: "-20px", // Adjust position as needed
+                  zIndex: 0, // Behind the search bar
+                  opacity: 0.5, // Optional
+                  width: "90px", // Adjust size as needed
+                }}
+              />
+              <img
+                src={group3}
+                alt=""
+                style={{
+                  position: "absolute",
+                  right: "-40px", // Adjust position as needed
+                  top: "-20px", // Adjust position as needed
+                  zIndex: 0, // Ensure it's behind the search bar
+                  opacity: 0.5, // Optional
+                  width: "80px", // Adjust size as needed
+                }}
+              />
               <TextField
                 variant="outlined"
                 required
@@ -136,27 +223,14 @@ const LandingPage = () => {
                   ),
                 }}
               />
-              <Button
-                variant="text"
-                className="advancedSearchButton"
-                size="small"
-                style={{
-                  position: "absolute",
-                  right: "100px", // Adjust for spacing between icon and button
-                  top: "50%",
-                  transform: "translateY(-50%)",
-                  zIndex: 1, // Ensure it stays above the input
-                }}
-              >
-                Advanced Search
-              </Button>
+
               <Button
                 variant="contained"
                 className="searchButton"
                 size="medium"
                 style={{
                   position: "absolute",
-                  right: "5px",
+                  right: "10px",
                   top: "50%",
                   transform: "translateY(-50%)",
                   borderRadius: "20px",
@@ -178,15 +252,15 @@ const LandingPage = () => {
       </section>
 
       {/* Why Infer Section */}
-      <section className="whyInfer">
+      <section className="whyInfer" id="why-infer">
         <Typography variant="h2" align="center">
           Why Infer?
         </Typography>
         <Container>
-          <Grid container spacing={1} marginTop={2}>
+          <Grid container spacing={3} marginTop={2}>
             {["01", "02", "03", "04"].map((item, index) => (
               <Grid item xs={12} md={4} lg={6} key={index}>
-                <div className="whyCard" style={{ width: 390, height: 250 }}>
+                <div className="whyCard">
                   <Typography variant="h5" className="cardNumber">
                     {item}
                   </Typography>
@@ -203,7 +277,7 @@ const LandingPage = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="faq">
+      <section className="faq" id="faq">
         <Typography
           variant="h6"
           align="center"
@@ -310,4 +384,4 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage;
+export default SearchPage;

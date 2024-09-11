@@ -1,69 +1,226 @@
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
-
-.desktop-page {
-  width: 100%;
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Manrope", sans-serif;
 }
 
-.nav-bar {
+.App {
+  text-align: center;
+}
+
+.navBar {
+  background-color: #000;
+  position: sticky;
+}
+
+.toolbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  /* background-color: #f8f8f8; */
-  background-color: black;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.logo img {
-  height: 30px; /* Adjust logo size */
+.logo {
+  height: 40px;
 }
-
-.list-links {
+.logoSection {
   display: flex;
   align-items: center;
 }
 
-.list-links a {
-  margin-right: 20px;
-  text-decoration: none;
-  font-family: "Manrope", sans-serif;
-
-  font-weight: 500;
-}
-
-.list-links a:hover {
-  color: white; /* Optional: Add hover effect */
-}
-
-.signIn-button {
-  /* background-color: #f33a56; */
-  color: white;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 10%;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background-color 0.3s ease;
-}
-
-.signIn-button:hover {
-  background-color: #0056b3;
-}
-.logo {
+.navLinks {
+  /* color: white; */
   display: flex;
-}
-.logo p {
-  color: white;
-  font-family: "Manrope", sans-serif;
-  font-size: medium;
+  gap: 50px;
 }
 
-.carosule {
-  background-color: black;
+.authButtons {
+  display: flex;
+  gap: 10px;
 }
-.carosule h1 {
+.signupButton:hover {
+  background-color: white;
+}
+
+.hero {
+  background-image: url("../images/newbackgroundimg.svg");
+  width: 95%;
+  height: 569px;
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
   color: white;
-  font-family: Axifoma;
-  font-size: 500;
-  /* position: relative; */
+  margin: 2%;
+}
+
+.hero-sec {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 50%;
+  height: auto;
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+  color: white;
+}
+
+.heroTitle {
+  z-index: 1; /* Ensures it is above the transparent container */
+  text-align: center;
+  margin-bottom: 3%;
+  font-size: 54px;
+  font-weight: 700;
+}
+
+.heroContent {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 18px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+.searchBox {
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  width: 80%;
+  position: relative;
+}
+
+.searchInput {
+  padding: 10px;
+  width: calc(100% - 150px); /* Reduce input width to fit the buttons */
+  border: none;
+  border-radius: 20px;
+}
+
+.searchButton {
+  /* position: absolute;
+  left: 30%;
+  border-radius: 20px; */
+  position: "absolute";
+  right: "10px";
+  top: "50%";
+  transform: "translateY(-50%)";
+  border-radius: "20px";
+  z-index: 1;
+}
+
+.advancedSearchButton {
+  position: absolute;
+  right: 30%; /* Position it before the "Search" button */
+  border-radius: 20px;
+  z-index: 1;
+}
+
+.heroSubtitle {
+  text-align: center;
+  margin-top: 20px;
+  color: white;
+  font-size: 1rem;
+}
+
+.whyInfer {
+  padding: 20px 0;
+  width: 100%;
+}
+
+.whyCard {
+  /* width: 90%; */
+  margin: 0 auto;
+  width: 40%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.cardNumber {
+  font-weight: 700;
+  color: #2196f3;
+  font-size: 40px;
+}
+
+.faq {
+  padding: 60px 0;
+}
+.footer {
+  background-color: #000;
+  color: white;
+  /* padding: 20px 0; */
+  width: 95%;
+  /* height: 8vh; */
+  border-radius: 20px;
+  margin: 2%;
+}
+
+.footerContainer {
+  display: flex;
+  justify-content: space-between; /* Align content on both sides */
+  align-items: center; /* Center content vertically */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.footerText {
+  font-size: 14px;
+}
+
+.icons {
+  display: flex;
+  gap: 5px; /* Space between icons */
+}
+
+/* Media query for smaller devices */
+@media (max-width: 768px) {
+  .footerContainer {
+    justify-content: center; /* Center everything on smaller screens */
+    text-align: center;
+  }
+
+  .footerText {
+    margin-bottom: 10px; /* Add space between text and icons on small screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .toolbar {
+    flex-direction: column;
+  }
+
+  .authButtons {
+    flex-direction: column;
+  }
+
+  .searchBox {
+    flex-direction: column;
+  }
+}
+@media (max-width: 600px) {
+  .searchInput {
+    padding: 10px 60px 10px 30px;
+  }
+
+  .advancedSearchButton {
+    left: 30px;
+    font-size: 0.8rem;
+  }
+
+  .searchButton {
+    right: 5px;
+  }
 }

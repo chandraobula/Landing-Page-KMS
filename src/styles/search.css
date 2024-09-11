@@ -1,0 +1,34 @@
+/* .whyCard {
+  width: 50%;
+  flex-direction: row;
+} */
+.navLinks {
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+}
+
+a {
+  padding: 10px 15px;
+  position: relative;
+}
+
+a::after {
+  content: "";
+  display: block;
+  height: 3px;
+  width: 0;
+  background: white;
+  transition: width 0.3s ease;
+  position: absolute;
+  bottom: 0;
+  left: 10;
+}
+
+a.active::after {
+  width: 50%;
+}
+
+html {
+  scroll-behavior: smooth;
+}

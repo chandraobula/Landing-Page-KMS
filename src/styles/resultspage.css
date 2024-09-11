@@ -1,0 +1,275 @@
+.container {
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.header {
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 2%;
+}
+
+.logo img {
+  width: 100px;
+  height: 34.66px;
+  margin-left: 26px;
+  gap: 0px;
+  opacity: 0px;
+}
+
+.nav-menu ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.nav-menu ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+.auth-buttons .signup,
+.auth-buttons .login {
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 14px;
+  color: black;
+  font-weight: 600;
+}
+
+.auth-buttons .signup {
+  background: transparent;
+  border: 1px solid black;
+}
+.auth-buttons .login {
+  background: transparent;
+  border: 1px solid black;
+}
+.auth-buttons .signup:hover {
+  background: black;
+  color: white;
+}
+.auth-buttons .login:hover {
+  background: black;
+  color: white;
+}
+.content {
+  width: 80%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  border-radius: 20px;
+}
+.pagination {
+  width: 20%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 27px, 0px, 27px, 0px;
+  border-radius: 20px;
+  margin: 3%;
+}
+.pagination h5 {
+  margin-bottom: 30px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.pagination ul {
+  list-style: none;
+  padding: 0;
+}
+
+.pagination ul li {
+  position: relative;
+  padding: 10px 0;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.pagination ul li.active {
+  color: black;
+  font-weight: 600;
+}
+
+.pagination ul li.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: black;
+}
+
+.pagination ul li.active a::before {
+  content: "";
+  position: absolute;
+  left: -10px; /* Adjusts the left position for the blue line */
+  top: 0;
+  bottom: 0;
+  width: 4px; /* Width of the blue line */
+  background-color: #007bff; /* Blue color for the active line */
+}
+
+.pagination ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 1px;
+  background-color: #ddd;
+}
+
+.pagination ul li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 1px;
+  background-color: #ddd;
+}
+
+.pagination ul li:hover {
+  color: black;
+  font-weight: 600;
+}
+
+.pagination ul li + li {
+  margin-top: 20px;
+}
+
+.article-content {
+  width: 80%;
+  max-height: 400px; /* Limit the height of the article content */
+  overflow-y: auto; /* Enable vertical scrolling */
+  justify-content: start;
+}
+
+.streaming-section {
+  width: 80%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  border-radius: 20px;
+}
+.history-pagination {
+  width: 20%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 27px, 0px, 27px, 0px;
+  border-radius: 20px;
+  margin: 3%;
+}
+.streaming-content {
+  width: 80%;
+}
+.history-pagination h5 {
+  margin-bottom: 30px;
+  font-size: 16px;
+  font-weight: 600;
+}
+.history-pagination ul {
+  list-style: none;
+  padding: 0;
+}
+
+.history-pagination ul li {
+  position: relative;
+  padding: 10px 0;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.history-pagination ul li.active {
+  color: black;
+  font-weight: 600;
+}
+
+.history-pagination ul li.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: black;
+}
+
+.history-pagination ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 1px;
+  background-color: #ddd;
+}
+
+.history-pagination ul li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 1px;
+  background-color: #ddd;
+}
+
+.history-pagination ul li:hover {
+  color: black;
+  font-weight: 600;
+}
+
+.history-pagination ul li + li {
+  margin-top: 20px;
+}
+.chat-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 70%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.chat-input input {
+  flex-grow: 1;
+  padding: 10px 60px 10px 40px; /* Add padding for the flag and button */
+  border-radius: 20px;
+  border: 1px solid #ccc;
+}
+
+.flag-logo {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 20px;
+  width: auto;
+}
+
+.chat-input button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 5px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
