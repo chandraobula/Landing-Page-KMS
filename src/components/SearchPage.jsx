@@ -5,6 +5,7 @@ import "../styles/landingpage.css";
 import "../styles/search.css";
 import { TextField, InputAdornment } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import keywords from "../Data/keywords.json";
 
 import {
   Toolbar,

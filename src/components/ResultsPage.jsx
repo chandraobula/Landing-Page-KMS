@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "../styles/resultspage.css";
 import Logo from "../images/Inferlogo.svg";
 import flag from "../images/flash.svg";
-//import Data from "../components/Data.json";
+import Arrow from "../images/Arrow-left.svg";
+import { useNavigate } from "react-router-dom";
 
 const ResultsPage = () => {
   const Data = {
@@ -14,34 +15,41 @@ const ResultsPage = () => {
     examination with a thorough workup are required to exclude emergent or nonoperative etiologies of back pain. The treatment of
     back pain first uses conventional therapies including lifestyle modifications, nonsteroidal anti-inflammatory drugs,
     physical therapy, and cognitive behavioral therapy. If these options have been exhausted and pain persists for greater than
-    6 weeks, imaging and a specialist referral may be indicated.
-    Back pain is a common condition affecting millions of individuals each year.
-    A biopsychosocial approach to back pain provides the best clinical framework. A detailed history and physical
-    examination with a thorough workup are required to exclude emergent or nonoperative etiologies of back pain. The treatment of
-    back pain first uses conventional therapies including lifestyle modifications, nonsteroidal anti-inflammatory drugs,
-    physical therapy, and cognitive behavioral therapy. If these options have been exhausted and pain persists for greater than
-    6 weeks, imaging and a specialist referral may be indicated.
-    Back pain is a common condition affecting millions of individuals each year.
-    A biopsychosocial approach to back pain provides the best clinical framework. A detailed history and physical
-    examination with a thorough workup are required to exclude emergent or nonoperative etiologies of back pain. The treatment of
-    back pain first uses conventional therapies including lifestyle modifications, nonsteroidal anti-inflammatory drugs,
-    physical therapy, and cognitive behavioral therapy. If these options have been exhausted and pain persists for greater than
-    6 weeks, imaging and a specialist referral may be indicated.
-    Back pain is a common condition affecting millions of individuals each year.
-    A biopsychosocial approach to back pain provides the best clinical framework. A detailed history and physical
-    examination with a thorough workup are required to exclude emergent or nonoperative etiologies of back pain. The treatment of
-    back pain first uses conventional therapies including lifestyle modifications, nonsteroidal anti-inflammatory drugs,
-    physical therapy, and cognitive behavioral therapy. If these options have been exhausted and pain persists for greater than
     6 weeks, imaging and a specialist referral may be indicated.`,
     conflicts: "None declared",
     similarArticles: ["Article 1", "Article 2"],
     citedBy: ["Study 1", "Study 2"],
     relatedInformation: "More details about related studies can be found here.",
   };
-  const [activeSection, setActiveSection] = useState("Title");
 
+  const [activeSection, setActiveSection] = useState("Title");
+  const [query, setQuery] = useState("");
+  const [response, setResponse] = useState("");
+  const [showStreamingSection, setShowStreamingSection] = useState(false);
+  const [history, setHistory] = useState([]);
+  const [chatInput, setChatInput] = useState(true);
   const handleNavigationClick = (section) => {
     setActiveSection(section);
+  };
+  const navigate = useNavigate(); // useNavigate hook for programmatic navigation
+
+  const handleBackClick = () => {
+    navigate("/searchpage"); // Navigate to the search page
+  };
+
+  const handleAskClick = () => {
+    if (query.trim() !== "") {
+      // Set a dummy response (this could be a real API response in the future)
+      setResponse(
+        "Here is the response to your query.Set a dummy response (this could be a real API response in the future).Show the streaming section only when the user asks a query"
+      );
+      setShowStreamingSection(true); // Show the streaming section only when the user asks a query
+      setChatInput(false);
+
+      // Add query to history
+      setHistory([...history, query]);
+      setQuery(""); // Clear the input field
+    }
   };
 
   return (
@@ -68,6 +76,7 @@ const ResultsPage = () => {
           <button className="login">Login</button>
         </div>
       </header>
+
       <div className="content">
         <div className="pagination">
           <h5>Page navigation</h5>
@@ -128,37 +137,75 @@ const ResultsPage = () => {
             </li>
           </ul>
         </div>
+
         <div className="article-content">
-          <h2>{Data.title}</h2>
+          <div className="title">
+            <img src={Arrow} alt="Arrow-left-icon" onClick={handleBackClick} />
+            <p>{Data.title}</p>{" "}
+          </div>
           <div className="meta">
-            <span>PMID: {Data.pmid}</span>
-            <span>DOI: {Data.doi}</span>
-            <span>Abstract:{Data.abstract}</span>
+            <p>
+              PMID: {Data.pmid} DOI:<a href={Data.doi}>{Data.doi}</a>
+            </p>{" "}
+            {/* This will get font-weight: 600 and size 16px */}
+            <p>Abstract:</p>{" "}
+            {/* The word "Abstract" is highlighted with 600 weight */}
+            <p style={{ marginBottom: "15px" }}>{Data.abstract}</p>{" "}
+            {/* Abstract content remains normal */}
           </div>
         </div>
       </div>
-      <div className="streaming-section">
-        <div className="history-pagination">
-          <h5>History</h5>
-          <ul>
-            <li>Title & Author</li>
-            <li>Abstract</li>
-          </ul>
-        </div>
-        <div className="streaming-content">
-          <span>{Data.abstract}</span>
-          <div className="chat-input">
-            <img src={flag} alt="flag-logo" className="flag-logo" />
-            <input type="text" placeholder="Ask anything..." />
-            <button>Ask</button>
+
+      {showStreamingSection && (
+        <div className="streaming-section">
+          <div className="history-pagination">
+            <h5>History</h5>
+            <ul>
+              {history.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="streaming-content">
+            <div className="query-asked">
+              <span>
+                {history.map((item, index) => (
+                  <span key={index}>{item}</span>
+                ))}
+
+                {query}
+              </span>
+            </div>
+            <div className="response" style={{ textAlign: "left" }}>
+              <span>{response}</span>
+            </div>
+            <div className="chat-input">
+              <img src={flag} alt="flag-logo" className="flag-logo" />
+              <input
+                type="text"
+                placeholder="Ask anything..."
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                // style={{ width: "100%" }}
+              />
+              <button onClick={handleAskClick}>Ask</button>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="chat-input">
-        <img src={flag} alt="flag-logo" className="flag-logo" />
-        <input type="text" placeholder="Ask anything..." />
-        <button>Ask</button>
-      </div>
+      )}
+      {chatInput && (
+        <div className="chat-input">
+          <img src={flag} alt="flag-logo" className="flag-logo" />
+          <input
+            type="text"
+            placeholder="Ask anything..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            // style={{ width: "80%" }}
+          />
+          <button onClick={handleAskClick}>Ask</button>
+        </div>
+      )}
     </div>
   );
 };
