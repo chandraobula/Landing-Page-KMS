@@ -15,6 +15,13 @@ const ResultsPage = () => {
     examination with a thorough workup are required to exclude emergent or nonoperative etiologies of back pain. The treatment of
     back pain first uses conventional therapies including lifestyle modifications, nonsteroidal anti-inflammatory drugs,
     physical therapy, and cognitive behavioral therapy. If these options have been exhausted and pain persists for greater than
+    6 weeks, imaging and a specialist referral may be indicated.
+    
+    Back pain is a common condition affecting millions of individuals each year.
+    A biopsychosocial approach to back pain provides the best clinical framework. A detailed history and physical
+    examination with a thorough workup are required to exclude emergent or nonoperative etiologies of back pain. The treatment of
+    back pain first uses conventional therapies including lifestyle modifications, nonsteroidal anti-inflammatory drugs,
+    physical therapy, and cognitive behavioral therapy. If these options have been exhausted and pain persists for greater than
     6 weeks, imaging and a specialist referral may be indicated.`,
     conflicts: "None declared",
     similarArticles: ["Article 1", "Article 2"],

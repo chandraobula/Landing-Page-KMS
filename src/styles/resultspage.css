@@ -9,7 +9,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 0;
+  padding: 15px 0;
   background: rgba(255, 255, 255, 1);
   border-radius: 20px;
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -18,7 +18,7 @@
 
 .logo img {
   width: 100px;
-  height: 34.66px;
+  height: 30.66px;
   margin-left: 26px;
   gap: 0px;
   opacity: 0px;
