@@ -13,7 +13,7 @@
   background: rgba(255, 255, 255, 1);
   border-radius: 20px;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  margin: 2%;
+  margin: 1.4%;
 }
 
 .logo img {
@@ -35,7 +35,9 @@
   color: #333;
   font-weight: 500;
 }
-
+.auth-buttons{
+  margin-right: 26px;
+}
 .auth-buttons .signup,
 .auth-buttons .login {
   border: none;
@@ -77,9 +79,12 @@
   border-radius: 20px;
   margin: 3%;
 }
+#pagination-a {
+  padding: 0 15px;
+}
 .pagination h5 {
-  margin-bottom: 30px;
-  font-size: 16px;
+  margin: 30px 0;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -92,7 +97,7 @@
 .pagination ul li {
   text-align: start;
   position: relative;
-  padding: 10px 10px;
+  /* padding: 10px 10px; */
   cursor: pointer;
   font-size: 14px;
   font-weight: 500;
@@ -181,7 +186,7 @@
 
 .article-content .meta p:last-child {
   font-weight: normal; /* Normal font-weight for the abstract */
-  font-size: 16px; /* Keep the font size same */
+  font-size: 14px; /* Keep the font size same */
   margin-bottom: 16px;
 }
 
@@ -198,34 +203,37 @@
   padding: 27px, 0px, 27px, 0px;
   border-radius: 20px;
   margin: 3%;
-  height: 532px;
 }
 .streaming-content {
   width: 80%;
-  margin-top: 470px;
+  /* display: flex;
+  flex-direction: column; */
+  margin-top: 150px;
 }
 .query-asked {
-  /* text-align: right; */
-  background-color: rgba(237, 237, 237, 1);
-  display: inline-block;
-  float: right;
-  margin-bottom: 10px;
-  padding: 10px;
-  border-radius: 8px;
-  max-width: 60%; /* Adjust based on max space you want query to occupy */
-  word-wrap: break-word; /* To break long words */
-  margin: 2%;
+     /* text-align: right; */
+     background-color: rgba(237, 237, 237, 1);
+     display: inline-block;
+     float: right;
+     margin-bottom: 10px;
+     padding: 10px;
+     border-radius: 8px;
+     /* max-width: 60%; */
+     width: fit-content;
+     word-wrap: break-word;
+     margin: 2%;
+     /* margin-left: 80%; */
 }
 
 .response {
   text-align: left;
   background-color: rgba(245, 249, 255, 1);
-  display: inline-block;
+  /* display: inline-block; */
   float: left;
   margin-bottom: 10px;
   padding: 10px;
   border-radius: 8px;
-  max-width: 60%; /* Adjust based on max space you want response to occupy */
+  width: 75%; /* Adjust based on max space you want response to occupy */
   word-wrap: break-word; /* To break long words */
 }
 
@@ -313,8 +321,8 @@
   position: relative;
   display: flex;
   align-items: center;
-  width: 80%;
-  margin-top: 20px;
+  width: 95%;
+  margin-top: 15px;
   margin-bottom: 20px;
 }
 

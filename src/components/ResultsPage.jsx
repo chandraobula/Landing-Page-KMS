@@ -89,7 +89,7 @@ const ResultsPage = () => {
           <h5>Page navigation</h5>
           <ul>
             <li className={activeSection === "Title" ? "active" : ""}>
-              <a
+              <a id="pagination-a"
                 href="#Title"
                 rel="Title-page"
                 onClick={() => handleNavigationClick("Title")}
@@ -98,7 +98,7 @@ const ResultsPage = () => {
               </a>
             </li>
             <li className={activeSection === "Abstract" ? "active" : ""}>
-              <a
+              <a id="pagination-a"
                 href="#Abstract"
                 rel="Abstract-page"
                 onClick={() => handleNavigationClick("Abstract")}
@@ -107,7 +107,7 @@ const ResultsPage = () => {
               </a>
             </li>
             <li className={activeSection === "Conflict" ? "active" : ""}>
-              <a
+              <a id="pagination-a"
                 href="#Conflict"
                 rel="Conflict-page"
                 onClick={() => handleNavigationClick("Conflict")}
@@ -116,7 +116,7 @@ const ResultsPage = () => {
               </a>
             </li>
             <li className={activeSection === "Similar" ? "active" : ""}>
-              <a
+              <a id="pagination-a"
                 href="#Similar"
                 rel="Similar-page"
                 onClick={() => handleNavigationClick("Similar")}
@@ -125,7 +125,7 @@ const ResultsPage = () => {
               </a>
             </li>
             <li className={activeSection === "Cited" ? "active" : ""}>
-              <a
+              <a id="pagination-a"
                 href="#Cited"
                 rel="Cited-page"
                 onClick={() => handleNavigationClick("Cited")}
@@ -134,7 +134,7 @@ const ResultsPage = () => {
               </a>
             </li>
             <li className={activeSection === "Related" ? "active" : ""}>
-              <a
+              <a id="pagination-a"
                 href="#Related"
                 rel="Related-page"
                 onClick={() => handleNavigationClick("Related")}
