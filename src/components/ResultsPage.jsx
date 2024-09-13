@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/resultspage.css";
 import Logo from "../images/Inferlogo.svg";
 import flag from "../images/flash.svg";
@@ -16,8 +16,15 @@ const ResultsPage = () => {
     back pain first uses conventional therapies including lifestyle modifications, nonsteroidal anti-inflammatory drugs,
     physical therapy, and cognitive behavioral therapy. If these options have been exhausted and pain persists for greater than
     6 weeks, imaging and a specialist referral may be indicated.
-    
+
     Back pain is a common condition affecting millions of individuals each year.
+    A biopsychosocial approach to back pain provides the best clinical framework. A detailed history and physical
+    examination with a thorough workup are required to exclude emergent or nonoperative etiologies of back pain. The treatment of
+    back pain first uses conventional therapies including lifestyle modifications, nonsteroidal anti-inflammatory drugs,
+    physical therapy, and cognitive behavioral therapy. If these options have been exhausted and pain persists for greater than
+    6 weeks, imaging and a specialist referral may be indicated.
+
+    Bak pin is a common condition affecting millions of individuals each year.
     A biopsychosocial approach to back pain provides the best clinical framework. A detailed history and physical
     examination with a thorough workup are required to exclude emergent or nonoperative etiologies of back pain. The treatment of
     back pain first uses conventional therapies including lifestyle modifications, nonsteroidal anti-inflammatory drugs,
@@ -30,11 +37,12 @@ const ResultsPage = () => {
   };
 
   const [activeSection, setActiveSection] = useState("Title");
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState();
   const [response, setResponse] = useState("");
   const [showStreamingSection, setShowStreamingSection] = useState(false);
   const [history, setHistory] = useState([]);
   const [chatInput, setChatInput] = useState(true);
+
   const handleNavigationClick = (section) => {
     setActiveSection(section);
   };
@@ -55,9 +63,24 @@ const ResultsPage = () => {
 
       // Add query to history
       setHistory([...history, query]);
-      setQuery(""); // Clear the input field
+      setQuery(" "); // Clear the input field
+    } else {
+      alert("please Enter a Query");
     }
   };
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleAskClick();
+    }
+  };
+
+  const messagesEndRef = React.useRef(null);
+
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [history, response]);
 
   return (
     <div className="container">
@@ -89,7 +112,8 @@ const ResultsPage = () => {
           <h5>Page navigation</h5>
           <ul>
             <li className={activeSection === "Title" ? "active" : ""}>
-              <a id="pagination-a"
+              <a
+                id="pagination-a"
                 href="#Title"
                 rel="Title-page"
                 onClick={() => handleNavigationClick("Title")}
@@ -98,7 +122,8 @@ const ResultsPage = () => {
               </a>
             </li>
             <li className={activeSection === "Abstract" ? "active" : ""}>
-              <a id="pagination-a"
+              <a
+                id="pagination-a"
                 href="#Abstract"
                 rel="Abstract-page"
                 onClick={() => handleNavigationClick("Abstract")}
@@ -107,7 +132,8 @@ const ResultsPage = () => {
               </a>
             </li>
             <li className={activeSection === "Conflict" ? "active" : ""}>
-              <a id="pagination-a"
+              <a
+                id="pagination-a"
                 href="#Conflict"
                 rel="Conflict-page"
                 onClick={() => handleNavigationClick("Conflict")}
@@ -116,7 +142,8 @@ const ResultsPage = () => {
               </a>
             </li>
             <li className={activeSection === "Similar" ? "active" : ""}>
-              <a id="pagination-a"
+              <a
+                id="pagination-a"
                 href="#Similar"
                 rel="Similar-page"
                 onClick={() => handleNavigationClick("Similar")}
@@ -125,7 +152,8 @@ const ResultsPage = () => {
               </a>
             </li>
             <li className={activeSection === "Cited" ? "active" : ""}>
-              <a id="pagination-a"
+              <a
+                id="pagination-a"
                 href="#Cited"
                 rel="Cited-page"
                 onClick={() => handleNavigationClick("Cited")}
@@ -134,7 +162,8 @@ const ResultsPage = () => {
               </a>
             </li>
             <li className={activeSection === "Related" ? "active" : ""}>
-              <a id="pagination-a"
+              <a
+                id="pagination-a"
                 href="#Related"
                 rel="Related-page"
                 onClick={() => handleNavigationClick("Related")}
@@ -174,6 +203,8 @@ const ResultsPage = () => {
             </ul>
           </div>
           <div className="streaming-content">
+            <div ref={messagesEndRef}></div>
+
             <div className="query-asked">
               <span>
                 {history.map((item, index) => (
@@ -186,14 +217,14 @@ const ResultsPage = () => {
             <div className="response" style={{ textAlign: "left" }}>
               <span>{response}</span>
             </div>
-            <div className="chat-input">
-              <img src={flag} alt="flag-logo" className="flag-logo" />
+            <div className="stream-input">
+              <img src={flag} alt="flag-logo" className="stream-flag-logo" />
               <input
                 type="text"
                 placeholder="Ask anything..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                // style={{ width: "100%" }}
+                onKeyDown={handleKeyDown}
               />
               <button onClick={handleAskClick}>Ask</button>
             </div>
@@ -208,7 +239,7 @@ const ResultsPage = () => {
             placeholder="Ask anything..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            // style={{ width: "80%" }}
+            onKeyDown={handleKeyDown}
           />
           <button onClick={handleAskClick}>Ask</button>
         </div>

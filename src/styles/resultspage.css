@@ -35,7 +35,7 @@
   color: #333;
   font-weight: 500;
 }
-.auth-buttons{
+.auth-buttons {
   margin-right: 26px;
 }
 .auth-buttons .signup,
@@ -155,18 +155,6 @@
   text-align: start;
   margin: 2%;
 }
-/* .title {
-  display: flex;
-  gap: 10px;
-}
-.title p {
-  font-weight: 600;
-  font-size: 18px;
-}
-.meta p {
-  font-weight: 600;
-  font-size: 14px;
-} */
 .title {
   display: flex;
   gap: 10px;
@@ -206,38 +194,55 @@
 }
 .streaming-content {
   width: 80%;
-  /* display: flex;
-  flex-direction: column; */
   margin-top: 150px;
 }
+.stream-input {
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
 .query-asked {
-     /* text-align: right; */
-     background-color: rgba(237, 237, 237, 1);
-     display: inline-block;
-     float: right;
-     margin-bottom: 10px;
-     padding: 10px;
-     border-radius: 8px;
-     /* max-width: 60%; */
-     width: fit-content;
-     word-wrap: break-word;
-     margin: 2%;
-     /* margin-left: 80%; */
+  background-color: rgba(237, 237, 237, 1);
+  text-align: right;
+  float: right;
+  max-width: 300px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  margin-left: auto; /* Pushes it to the right */
+  clear: both;
+  word-wrap: break-word;
+  /* display: inline-block;
+  float: right;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 8px; */
+  /* max-width: 500px; */
+  /* width: fit-content; */
+  /* word-wrap: break-word; */
+  margin: 2%;
+  /* margin-top: -30px; */
 }
 
 .response {
-  text-align: left;
+  /* text-align: left;
   background-color: rgba(245, 249, 255, 1);
-  /* display: inline-block; */
   float: left;
   margin-bottom: 10px;
   padding: 10px;
   border-radius: 8px;
-  width: 75%; /* Adjust based on max space you want response to occupy */
-  word-wrap: break-word; /* To break long words */
+  width: 75%;
+  word-wrap: break-word; */
+  text-align: left;
+  float: left;
+  max-width: 500px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  margin-right: auto; /* Pushes it to the left */
+  clear: both;
 }
 
-/* Clearfix to ensure proper flow */
 .clearfix::after {
   content: "";
   display: block;
@@ -271,8 +276,12 @@
   cursor: pointer;
   font-size: 14px;
   font-weight: 500;
+  max-width: 200px;
   transition: color 0.3s ease;
 }
+/* .history-pagination ul li a {
+  max-width: 200px;
+} */
 
 .history-pagination ul li.active {
   color: black;
@@ -317,11 +326,50 @@
 .history-pagination ul li + li {
   margin-top: 20px;
 }
+.stream-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+.stream-input input {
+  flex-grow: 1;
+  padding: 10px 60px 10px 40px; /* Add padding for the flag and button */
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  margin-right: 2%;
+}
+
+.stream-flag-logo {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 20px;
+  width: auto;
+}
+
+.stream-input button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 5px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-right: 2%;
+}
 .chat-input {
   position: relative;
   display: flex;
   align-items: center;
-  width: 95%;
+  width: 80%;
   margin-top: 15px;
   margin-bottom: 20px;
 }
@@ -353,4 +401,41 @@
   border: none;
   border-radius: 20px;
   cursor: pointer;
+}
+/* For the entire scrollbar */
+::-webkit-scrollbar {
+  width: 5px; /* Width of the scrollbar */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Background of the scrollbar track */
+  border-radius: 10px; /* Rounding the track corners */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; /* Color of the scrollbar handle */
+  border-radius: 10px; /* Rounding the handle corners */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Darker color when hovered */
+}
+@media (max-width: 768px) {
+  .container,
+  .content,
+  .article-content {
+    width: 90%;
+  }
+
+  .pagination,
+  .history-pagination {
+    width: 100%;
+  }
+
+  .stream-input input {
+    width: 100%;
+  }
 }
