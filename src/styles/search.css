@@ -1,7 +1,4 @@
-/* .whyCard {
-  width: 50%;
-  flex-direction: row;
-} */
+
 .navLinks {
   display: flex;
   justify-content: space-around;
